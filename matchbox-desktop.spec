@@ -1,15 +1,15 @@
 %define name 	matchbox-desktop
-%define version 0.9.1
-%define release 1mdk
+%define version 2.0
+%define release %mkrel 1
 
 Summary: 	Desktop for the Matchbox Desktop
 Name: 		%name
 Version: 	%version
 Release: 	%release
-Url: 		http://matchbox.handhelds.org/
-License: 	GPL
+Url: 		http://matchbox-project.org/
+License: 	GPLv2+
 Group: 		Graphical desktop/Other
-Source: 	%{name}-%{version}.tar.bz2
+Source: 	http://matchbox-project.org/sources/%name/%version/%{name}-%{version}.tar.bz2
 
 Buildroot: 	%_tmppath/%name-%version-buildroot
 BuildRequires:	pkgconfig libmatchbox-devel startup-notification-devel
@@ -21,13 +21,6 @@ embedded platforms such as handhelds, set-top boxes, kiosks and anything else
 for which screen space, input mechanisms or system resources are limited.
 
 This package contains the main desktop from Matchbox.
-
-%package devel
-Group:		Development/C
-Summary:	Headers and static libraries from %name
-
-%description devel
-Headers and static libraries from %name.
 
 %prep
 %setup -q
@@ -67,17 +60,3 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS README ChangeLog
 %_bindir/%name
 %config(noreplace) %_sysconfdir/X11/wmsession.d/*
-%config %_sysconfdir/matchbox/
-#%_datadir/%name
-%dir %_libdir/matchbox/desktop
-%_libdir/matchbox/desktop/*.so
-%_datadir/pixmaps/*
-%_datadir/applications/*
-
-%files devel
-%defattr(-,root,root)
-%_includedir/%name
-%_libdir/pkgconfig/*.pc
-%_libdir/matchbox/desktop/*.a
-%_libdir/matchbox/desktop/*.la
-
