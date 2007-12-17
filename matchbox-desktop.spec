@@ -11,7 +11,6 @@ License: 	GPLv2+
 Group: 		Graphical desktop/Other
 Source: 	http://matchbox-project.org/sources/%name/%version/%{name}-%{version}.tar.bz2
 
-Buildroot: 	%_tmppath/%name-%version-buildroot
 BuildRequires:	pkgconfig libmatchbox-devel startup-notification-devel
 BuildRequires:	gtk+2-devel
 Requires:	matchbox-panel matchbox-window-manager matchbox-common
