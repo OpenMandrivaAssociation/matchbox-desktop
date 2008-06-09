@@ -46,11 +46,15 @@ exec /usr/bin/matchbox-session
 EOF
 
 %post
+%if %mdkversion < 200900
 /sbin/ldconfig
+%endif
 %make_session
 
 %postun
+%if %mdkversion < 200900
 /sbin/ldconfig
+%endif
 %make_session
 
 %clean
