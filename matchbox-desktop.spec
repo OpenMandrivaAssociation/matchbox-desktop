@@ -1,6 +1,6 @@
 %define name 	matchbox-desktop
 %define version 2.0
-%define release %mkrel 3
+%define release %mkrel 4
 
 Summary: 	Desktop for the Matchbox Desktop
 Name: 		%name
@@ -11,10 +11,14 @@ License: 	GPLv2+
 Group: 		Graphical desktop/Other
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source: 	http://matchbox-project.org/sources/%name/%version/%{name}-%{version}.tar.bz2
-
-BuildRequires:	pkgconfig libmatchbox-devel startup-notification-devel
+BuildRequires:	pkgconfig
+BuildRequires:	libmatchbox-devel
+BuildRequires:	startup-notification-devel
 BuildRequires:	gtk+2-devel
-Requires:	matchbox-panel matchbox-window-manager matchbox-common
+Requires:	matchbox-panel
+Requires:	matchbox-window-manager
+Requires:	matchbox-common
+Obsoletes:	matchbox-desktop-devel < %{version}-%{release}
 
 %description
 Matchbox is a base environment for the X Window System running on non-desktop
