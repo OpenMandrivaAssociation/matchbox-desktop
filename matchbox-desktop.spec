@@ -1,6 +1,6 @@
 %define name 	matchbox-desktop
 %define version 2.0
-%define release %mkrel 4
+%define release %mkrel 5
 
 Summary: 	Desktop for the Matchbox Desktop
 Name: 		%name
