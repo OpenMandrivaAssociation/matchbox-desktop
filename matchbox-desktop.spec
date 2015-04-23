@@ -9,6 +9,7 @@ Source0:	http://downloads.yoctoproject.org/releases/matchbox/%{name}/%{version}/
 BuildRequires:	pkgconfig(libmb)
 BuildRequires:	pkgconfig(libstartup-notification-1.0)
 BuildRequires:	pkgconfig(gtk+-x11-2.0)
+BuildRequires:	pkgconfig(dbus-1)
 Requires:	matchbox-panel
 Requires:	matchbox-window-manager
 Requires:	matchbox-common
