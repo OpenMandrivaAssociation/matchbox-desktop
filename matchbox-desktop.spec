@@ -1,20 +1,14 @@
-%define name 	matchbox-desktop
-%define version 2.0
-%define release %mkrel 6
-
 Summary: 	Desktop for the Matchbox Desktop
-Name: 		%name
-Version: 	%version
-Release: 	%release
+Name: 		matchbox-desktop
+Version: 	2.0
+Release: 	7
 Url: 		http://matchbox-project.org/
 License: 	GPLv2+
 Group: 		Graphical desktop/Other
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source: 	http://matchbox-project.org/sources/%name/%version/%{name}-%{version}.tar.bz2
-BuildRequires:	pkgconfig
-BuildRequires:	libmatchbox-devel
-BuildRequires:	startup-notification-devel
-BuildRequires:	gtk+2-devel
+Source0:	http://downloads.yoctoproject.org/releases/matchbox/%{name}/%{version}/%{name}-%{version}.tar.xz
+BuildRequires:	pkgconfig(libmb)
+BuildRequires:	pkgconfig(libstartup-notification-1.0)
+BuildRequires:	pkgconfig(gtk+-x11-2.0)
 Requires:	matchbox-panel
 Requires:	matchbox-window-manager
 Requires:	matchbox-common
@@ -29,18 +23,19 @@ This package contains the main desktop from Matchbox.
 
 %prep
 %setup -q
+%apply_patches
+autoreconf -fiv
 
 %build
-%configure2_5x --enable-dnotify --enable-startup-notification
+%configure --enable-dnotify --enable-startup-notification --with-dbus
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 # wmsession config
-mkdir -p $RPM_BUILD_ROOT/%_sysconfdir/X11/wmsession.d
-cat > $RPM_BUILD_ROOT/%_sysconfdir/X11/wmsession.d/22Matchbox <<EOF
+mkdir -p %{buildroot}/%_sysconfdir/X11/wmsession.d
+cat > %{buildroot}/%_sysconfdir/X11/wmsession.d/22Matchbox <<EOF
 NAME=Matchbox
 ICON=/usr/share/pixmaps/mbdesktop.png
 EXEC=/usr/bin/matchbox-session
@@ -49,23 +44,7 @@ SCRIPT:
 exec /usr/bin/matchbox-session
 EOF
 
-%post
-%if %mdkversion < 200900
-/sbin/ldconfig
-%endif
-%make_session
-
-%postun
-%if %mdkversion < 200900
-/sbin/ldconfig
-%endif
-%make_session
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
-%defattr(-,root,root)
 %doc AUTHORS README ChangeLog
 %_bindir/%name
 %config(noreplace) %_sysconfdir/X11/wmsession.d/*
