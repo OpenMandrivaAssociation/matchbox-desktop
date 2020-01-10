@@ -24,7 +24,7 @@ This package contains the main desktop from Matchbox.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 autoreconf -fiv
 
 %build
