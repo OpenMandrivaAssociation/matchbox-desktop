@@ -2,7 +2,7 @@ Summary: 	Desktop for the Matchbox Desktop
 Name: 		matchbox-desktop
 Version: 	2.0
 Release: 	7
-Url: 		http://matchbox-project.org/
+Url: 		https://matchbox-project.org/
 License: 	GPLv2+
 Group: 		Graphical desktop/Other
 Source0:	http://downloads.yoctoproject.org/releases/matchbox/%{name}/%{version}/%{name}-%{version}.tar.xz
